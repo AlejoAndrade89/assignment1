@@ -1,0 +1,54 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color:burlywood;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        color: #4682b4;
+        margin-top: 20px;
+    }
+
+    .video-container {
+        margin: 20px auto;
+        width: 560px;
+        height: 315px;
+    }
+</style>
+
+<body>
+    <h1>My Favorite Song</h1>
+    <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/7QU1nvuxaMA?si=DY1SGZ-n4NhJfHc0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div id="animateBox" class="box"></div>
+</body>
+
+<script>
+    function rotate(element, duration) {
+        let start = null;
+        function animate(time) {
+            if (!start) start = time;
+            let progress = time - start;
+            let degree = (progress / duration) * 360;
+            element.style.transform = `rotate(${degree}deg)`;
+            if (progress < duration) {
+                requestAnimationFrame(animate);
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+
+    // Initialize rotation when page is loaded.
+    let videoContainer = document.querySelector('.video-container');
+    rotate(videoContainer, 5000);  // Rota el contenedor de video durante 5 segundos
+</script>
